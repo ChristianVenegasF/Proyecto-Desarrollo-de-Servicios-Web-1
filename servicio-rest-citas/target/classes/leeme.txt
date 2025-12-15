@@ -1,0 +1,3 @@
+http://localhost:8080/servicio-rest-citas/api/citas
+
+http://localhost:8080/servicio-rest-citas/
