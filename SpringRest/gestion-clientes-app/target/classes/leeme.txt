@@ -1,0 +1,5 @@
+http://localhost:8081/api/clientes
+
+http://localhost:8081/api/citas
+
+http://localhost:8081/index.html

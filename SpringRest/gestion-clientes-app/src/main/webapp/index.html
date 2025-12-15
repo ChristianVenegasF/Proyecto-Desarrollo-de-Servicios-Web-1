@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Clientes y Citas</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-users"></i> Gestion de Clientes & Citas</h1>
+            <nav>
+                <button class="nav-btn active" data-tab="clientes">Clientes</button>
+                <button class="nav-btn" data-tab="citas">Citas</button>
+            </nav>
+        </header>
+
+        <!-- Sección de Clientes -->
+        <section id="clientes-section" class="tab-content active">
+            <div class="section-header">
+                <h2><i class="fas fa-user-friends"></i> Gestion de Clientes</h2>
+                <button class="btn btn-primary" onclick="abrirModalCliente()">
+                    <i class="fas fa-plus"></i> Nuevo Cliente
+                </button>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="searchClientes" placeholder="Buscar clientes..." onkeyup="buscarClientes()">
+            </div>
+
+            <div class="table-container">
+                <table id="tablaClientes">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Teléfono</th>
+                            <th>Fecha Creación</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientesBody">
+                        <!-- Los clientes se cargarán aquí -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Sección de Citas -->
+        <section id="citas-section" class="tab-content">
+            <div class="section-header">
+                <h2><i class="fas fa-calendar-alt"></i> Gestión de Citas</h2>
+                <button class="btn btn-primary" onclick="abrirModalCita()">
+                    <i class="fas fa-plus"></i> Nueva Cita
+                </button>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="searchCitas" placeholder="Buscar citas..." onkeyup="buscarCitas()">
+            </div>
+
+            <div class="table-container">
+                <table id="tablaCitas">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Motivo</th>
+                            <th>Cliente</th>
+                            <th>Fecha Creación</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="citasBody">
+                        <!-- Las citas se cargarán aquí -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal para Cliente -->
+    <div id="modalCliente" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModalCliente()">&times;</span>
+            <h3 id="modalClienteTitulo">Nuevo Cliente</h3>
+            <form id="formCliente">
+                <input type="hidden" id="clienteId">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Telefono:</label>
+                    <input type="text" id="telefono">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="cerrarModalCliente()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Cita -->
+    <div id="modalCita" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModalCita()">&times;</span>
+            <h3 id="modalCitaTitulo">Nueva Cita</h3>
+            <form id="formCita">
+                <input type="hidden" id="citaId">
+                <div class="form-group">
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha" required>
+                </div>
+                <div class="form-group">
+                    <label for="hora">Hora:</label>
+                    <input type="time" id="hora" required>
+                </div>
+                <div class="form-group">
+                    <label for="motivo">Motivo:</label>
+                    <textarea id="motivo" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="clienteSelect">Cliente:</label>
+                    <select id="clienteSelect" required>
+                        <option value="">Seleccionar cliente</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="cerrarModalCita()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
